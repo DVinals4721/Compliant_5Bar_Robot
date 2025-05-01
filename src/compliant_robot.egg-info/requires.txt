@@ -1,0 +1,8 @@
+numpy
+matplotlib
+scipy
+
+[dev]
+pytest
+black
+isort
