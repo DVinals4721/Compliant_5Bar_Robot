@@ -11,7 +11,7 @@ This package provides an implementation of a 3D Frame Solver using the Direct St
 - Geometric nonlinearity consideration
 - Local and global stiffness matrix assembly
 - Boundary condition application
-- Solver for displacements and reactions
+- Solver for displacements and reaction
 
 ## Installation and Usage
 
