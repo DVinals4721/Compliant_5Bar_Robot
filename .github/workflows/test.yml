@@ -40,7 +40,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          pytest --cov=compliant_robot --cov-report=xml
+          pytest --compliant_robot --cov-report=xml
         # This will run tests and generate coverage for all specified packages
 
       - name: Upload coverage to Codecov
