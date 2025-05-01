@@ -1,72 +1,60 @@
+# Compliant 5-Bar Robot Simulation
 
-# ME_700_Assignment_2: 3D Frame Solver
-![GitHub Actions](https://github.com/DVinals4721/Compliant_5Bar_Robot/actions/workflows/test.yml/badge.svg)
-[![codecov](https://codecov.io/gh/DVinals4721/Compliant_5Bar_Robot/branch/main/graph/badge.svg)](https://codecov.io/gh/DVinals4721/Compliant_5Bar_Robot)
-![GitHub issues](https://img.shields.io/github/issues/DVinals4721/Compliant_5Bar_Robot)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/DVinals4721/Compliant_5Bar_Robot)
+A Python package for modeling and simulating a compliant 5-bar linkage robot using the Direct Stiffness Method.
 
-This package provides an implementation of a 3D Frame Solver using the Direct Stiffness Method, including:
+## Project Overview
 
-- 3D beam element formulation
-- Geometric nonlinearity consideration
-- Local and global stiffness matrix assembly
-- Boundary condition application
-- Solver for displacements and reactio
+This repository implements a simulation of a compliant 5-bar linkage robot mechanism. Unlike traditional rigid 5-bar linkages with four links and two motors, this project models a simplified version with only two flexible links mounted on motors and connected to each by a pin joint on the other ends. The flexible links bend in response to motor angles and torques, replicating the workspace and behavior of a traditional 5-bar mechanism through compliant deformation rather than rigid connections.
+
+## Key Features
+
+* **3D Frame Solver** using the Direct Stiffness Method, including:
+   * 3D beam element formulation
+   * Geometric nonlinearity consideration
+   * Local and global stiffness matrix assembly
+   * Boundary condition application
+   * Solver for displacements and reactions
+* **Pseudo-Rigid-Body Model (PRBM)** implementation based on "Handbook of Compliant Mechanisms" by Larry L. Howell, Spencer P. Magleby, and Brian M. Olsen.
+* **5-Bar Mechanism Kinematics** calculated using equations from "A Method for Optimal Kinematic Design of Five-bar Planar Parallel Manipulators" by Tien Dung Le, Hee-Jun Kang, and Quang Vinh Doan.
 
 ## Installation and Usage
 
 1. Clone the repository:
-
    ```bash
-   git clone https://github.com/DVinals4721/ME_700_Assignment_2.git
-   cd ME_700_Assignment_2
+   git clone https://github.com/DVinals4721/Compliant_5Bar_Robot.git
+   cd Compliant_5Bar_Robot
    ```
 
 2. Set up a Conda environment:
-
    ```bash
-   conda create --name frame-solver-env python=3.11
-   conda activate frame-solver-env
+   conda create --name robotenv python=3.11
+   conda activate robotenv
    ```
-
    Note: You can also use mamba if you prefer.
 
 3. Verify Python version:
-
    ```bash
    python --version
    ```
-
    Ensure it shows version 3.11 or later.
 
 4. Update pip and essential tools:
-
    ```bash
    pip install --upgrade pip setuptools wheel
    ```
 
 5. Install the package in editable mode:
-
    ```bash
    pip install -e .
    ```
-
-   Make sure you're in the correct directory (ME_700_Assignment_2) when running this command.
+   Make sure you're in the correct directory (Compliant_5Bar_Robot) when running this command.
 
 6. Install pytest and pytest-cov for testing:
-
    ```bash
    pip install pytest pytest-cov
    ```
 
-7. Run tests with coverage:
-
-   ```bash
-   pytest -v --cov=frame_solver --cov-report term-missing
-   ```
-
-8. Run specific tests:
-
+7. Run specific tests:
    ```bash
    pytest tests/test_frame_solver.py
    ```
@@ -75,19 +63,36 @@ This package provides an implementation of a 3D Frame Solver using the Direct St
 
 After installation, explore the functionality through our example script:
 
-### 3D Frame Analysis
+### Compliant Robot Simulation
 
 ```bash
-python examples/frame_analysis_example.py
+python examples/compliant_robot_example.py
 ```
 
-This script demonstrates how to set up a simple 3D frame, solve it, and visualize the results.
+This script demonstrates how to:
+* Set up a compliant 5-bar mechanism
+* Apply motor angles and torques
+* Solve for the resulting deformation
+* Visualize the compliant robot's behavior
 
 ## Package Structure
 
-- `src/frame_solver/`: Contains the main implementation of the 3D Frame Solver.
-- `tests/`: Contains unit tests for the solver.
-- `examples/`: Contains example scripts demonstrating the usage of the solver.
+* `src/compliant_robot/`: Contains the main implementation:
+   * Frame solver using Direct Stiffness Method
+   * Pseudo-Rigid-Body Model for compliant mechanism simulation
+   * Kinematic analysis tools for 5-bar linkages
+* `tests/`: Contains unit tests for the solver and models
+* `examples/`: Contains example scripts demonstrating the usage
+
+## Theoretical Background
+
+This project combines structural mechanics with compliant mechanism theory to model flexible linkages. The approach uses:
+
+1. **Pseudo-Rigid-Body Model**: Approximates flexible members as rigid links connected by torsional springs, allowing efficient simulation of large deflections.
+
+2. **Direct Stiffness Method**: Analyzes the deformation of the compliant links under various loads and boundary conditions.
+
+3. **5-Bar Mechanism Kinematics**: Provides the mathematical framework for calculating workspace and motion patterns.
 
 ## Contributing
 
@@ -96,4 +101,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-```
