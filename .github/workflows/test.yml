@@ -40,7 +40,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          pytest --cov=elasto_plastic_models --cov=root_finding_methods --cov-report=xml
+          pytest --cov=compliant_robot --cov-report=xml
         # This will run tests and generate coverage for all specified packages
 
       - name: Upload coverage to Codecov
