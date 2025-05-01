@@ -2,7 +2,7 @@
 
 A Python package for modeling and simulating a compliant 5-bar linkage robot that uses flexible beams instead of traditional rigid links and joints.
 
-![Compliant 5-Bar Robot](images/simulation_result.png)
+![Compliant 5-Bar Robot](images/simulation_result.PNG)
 *Example of a compliant 5-bar robot simulation*
 
 ## What Makes This Project Unique
@@ -153,7 +153,7 @@ The visualization displays both:
 1. The rigid-link representation with the rotational joint (showing the PRBM approximation)
 2. A smooth spline curve that represents the actual bending beam
 
-![Pseudo-Rigid-Body Model](images/pseudo_model.png)
+![Pseudo-Rigid-Body Model](images/pseudo_model.PNG)
 ### Stress Visualization
 
 The visualization implements a color-gradient display system:
