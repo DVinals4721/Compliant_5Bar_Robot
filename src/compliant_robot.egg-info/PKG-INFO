@@ -1,4 +1,4 @@
-Metadata-Version: 2.4
+Metadata-Version: 2.1
 Name: compliant_robot
 Version: 0.1.0
 Summary: A 3D frame solver using the Direct Stiffness Method
@@ -14,96 +14,219 @@ Requires-Dist: pytest; extra == "dev"
 Requires-Dist: black; extra == "dev"
 Requires-Dist: isort; extra == "dev"
 
+# Compliant 5-Bar Robot Simulation
 
-# ME_700_Assignment_2: 3D Frame Solver
-![GitHub Actions](https://github.com/DVinals4721/ME_700_Assignment_2/actions/workflows/test.yml/badge.svg)
-[![codecov](https://codecov.io/gh/DVinals4721/ME_700_Assignment_2/branch/main/graph/badge.svg)](https://codecov.io/gh/DVinals4721/ME_700_Assignment_2)
-![GitHub issues](https://img.shields.io/github/issues/DVinals4721/ME_700_Assignment_2)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/DVinals4721/ME_700_Assignment_2)
+A Python package for modeling and simulating a compliant 5-bar linkage robot that uses flexible beams instead of traditional rigid links and joints.
 
-This package provides an implementation of a 3D Frame Solver using the Direct Stiffness Method, including:
+![Compliant 5-Bar Robot](images/simulation_result.PNG)
+*Example of a compliant 5-bar robot simulation*
 
-- 3D beam element formulation
-- Geometric nonlinearity consideration
-- Local and global stiffness matrix assembly
-- Boundary condition application
-- Solver for displacements and reactions
+## What Makes This Project Unique
+
+This project reimagines the traditional 5-bar linkage robot by replacing the four rigid links with just two flexible beams. Instead of using conventional mechanical joints, the robot achieves its movement through the controlled bending of these compliant beams. This approach offers:
+
+- **Simplified Mechanical Design**: Fewer parts and no traditional joints
+- **Reduced Friction and Wear**: No mechanical joints means less maintenance
+- **Precise Control**: Predictable elastic deformation for accurate positioning
+- **Advanced Simulation**: Real-time stress visualization and workspace analysis
+
+## Project Overview
+
+This repository implements a simulation of a compliant 5-bar linkage robot mechanism. Unlike traditional rigid 5-bar linkages with four links and two motors, this project models a simplified version with only two flexible links mounted on motors. The flexible links bend in response to motor angles and torques, replicating the workspace and behavior of a traditional 5-bar mechanism through compliant deformation rather than rigid connections.
+
+### Key Features
+
+- **3D Frame Solver** using the Direct Stiffness Method, including:
+  - 3D beam element formulation
+  - Geometric nonlinearity consideration
+  - Local and global stiffness matrix assembly
+  - Boundary condition application
+  - Solver for displacements and reactions
+
+- **Pseudo-Rigid-Body Model (PRBM)** implementation based on "Handbook of Compliant Mechanisms" by Larry L. Howell, Spencer P. Magleby, and Brian M. Olsen.
+
+- **5-Bar Mechanism Kinematics** calculated using equations from "A Method for Optimal Kinematic Design of Five-bar Planar Parallel Manipulators" by Tien Dung Le, Hee-Jun Kang, and Quang Vinh Doan.
 
 ## Installation and Usage
 
 1. Clone the repository:
-
    ```bash
-   git clone https://github.com/DVinals4721/ME_700_Assignment_2.git
-   cd ME_700_Assignment_2
+   git clone https://github.com/DVinals4721/Compliant_5Bar_Robot.git
+   cd Compliant_5Bar_Robot
    ```
 
 2. Set up a Conda environment:
-
    ```bash
-   conda create --name frame-solver-env python=3.11
-   conda activate frame-solver-env
+   conda create --name robotenv python=3.11
+   conda activate robotenv
    ```
-
    Note: You can also use mamba if you prefer.
 
 3. Verify Python version:
-
    ```bash
    python --version
    ```
-
    Ensure it shows version 3.11 or later.
 
 4. Update pip and essential tools:
-
    ```bash
    pip install --upgrade pip setuptools wheel
    ```
 
 5. Install the package in editable mode:
-
    ```bash
    pip install -e .
    ```
-
-   Make sure you're in the correct directory (ME_700_Assignment_2) when running this command.
+   Make sure you're in the correct directory (Compliant_5Bar_Robot) when running this command.
 
 6. Install pytest and pytest-cov for testing:
-
    ```bash
    pip install pytest pytest-cov
    ```
 
-7. Run tests with coverage:
-
+7. Run specific tests:
    ```bash
-   pytest -v --cov=frame_solver --cov-report term-missing
+   pytest tests/test_compliant_robot.py
    ```
 
-8. Run specific tests:
+## Code Overview and Features
 
-   ```bash
-   pytest tests/test_frame_solver.py
-   ```
+The implementation provides a comprehensive framework for simulating and analyzing a compliant 5-bar mechanism:
 
-## Usage Example
+### Key Components
+
+1. **FiveBarRobot Class**: The main class that handles all calculations and visualizations.
+   - Customizable parameters for material properties, geometry, and visualization
+   - Methods for forward and inverse kinematics
+   - Workspace calculation and constraint checking
+
+2. **Kinematics Engine**:
+   - Calculates all angles for a given end-effector position
+   - Handles both the rigid-body kinematics and the compliant deformations
+
+3. **Statics and Stress Analysis**:
+   - Solves for static equilibrium at any position
+   - Calculates stresses in the compliant links
+   - Enforces force ratio constraints for mechanical stability
+
+4. **Visualization System**:
+   - Interactive plotting of the mechanism
+   - Color-coded stress visualization (blue to red gradient based on stress level)
+   - Workspace mapping and animation
+   - Detailed annotations showing angles, forces, and torques
+
+### Usage Example
 
 After installation, explore the functionality through our example script:
 
-### 3D Frame Analysis
-
 ```bash
-python examples/frame_analysis_example.py
+python examples/compliant_robot_example.py
 ```
 
-This script demonstrates how to set up a simple 3D frame, solve it, and visualize the results.
+This script demonstrates how to:
+- Set up a compliant 5-bar mechanism
+- Apply motor angles and torques
+- Solve for the resulting deformation
+- Visualize the compliant robot's behavior
+
+The visualization produces the hinge linkage with rotational stiffness (as described in the Pseudo-Rigid-Body Model) alongside a smooth representation of the bending beam. The color of each beam changes dynamically from blue to red as the stress approaches the material's yield strength, providing intuitive feedback about the mechanism's structural state.
+
+![Simulation Result](docs/images/simulation_result.gif)
+*Animation of the compliant robot in motion showing stress visualization*
 
 ## Package Structure
 
-- `src/frame_solver/`: Contains the main implementation of the 3D Frame Solver.
-- `tests/`: Contains unit tests for the solver.
-- `examples/`: Contains example scripts demonstrating the usage of the solver.
+- `src/compliant_robot/`: Contains the main implementation:
+  - Frame solver using Direct Stiffness Method
+  - Pseudo-Rigid-Body Model for compliant mechanism simulation
+  - Kinematic analysis tools for 5-bar linkages
+  - Stress analysis and visualization modules
+
+- `tests/`: Contains unit tests for the solver and models:
+  - Validation tests against theoretical models
+  - Stress calculation verification
+  - Workspace boundary tests
+
+- `examples/`: Contains example scripts demonstrating the usage:
+  - Basic setup and visualization
+  - Workspace analysis examples
+  - Path planning demonstrations
+  - Parameter optimization tools
+
+## Implementation and Visualization
+
+This project implements a compliant mechanism model of a 5-bar linkage robot using the Pseudo-Rigid-Body Model (PRBM) approach. The implementation includes:
+
+### Pseudo-Rigid-Body Model
+
+The code models each flexible link as a rigid link with a torsional spring at a specific location (the characteristic pivot). This allows us to:
+
+- Replace the complex calculation of beam bending with a simpler rotational joint model
+- Apply the stiffness factor (K₀) and compliant ratio parameters from established PRBM research
+- Simulate large deflections with computational efficiency
+
+The visualization displays both:
+1. The rigid-link representation with the rotational joint (showing the PRBM approximation)
+2. A smooth spline curve that represents the actual bending beam
+
+![Pseudo-Rigid-Body Model](images/pseudo_model.PNG)
+### Stress Visualization
+
+The visualization implements a color-gradient display system:
+- The beam color dynamically changes from blue to red as stress increases
+- Blue indicates low stress (safe operation)
+- Red indicates stress approaching the material's yield strength
+- This provides an intuitive visual indication of how close the mechanism is to failure
+
+### Workspace Analysis
+
+The code calculates the robot's workspace by:
+- Testing a grid of points throughout the potential workspace
+- Applying multiple constraints at each point:
+  - Geometric reachability (both arms can reach the point)
+  - Deformation angle limits (prevents excessive bending)
+  - Force ratio constraints (ensures mechanical stability)
+  - Stress analysis (verifies stresses remain below yield strength)
+
+The resulting workspace visualization shows all valid accessible positions for the end-effector.
+
+### Animation Features
+
+The visualization includes animation capabilities to:
+- Demonstrate the robot moving throughout its workspace
+- Display real-time information about stress, deformation angles, and forces
+- Show how the compliant links bend in response to different positions
+- Visualize the full motion capabilities of the mechanism
+
+![PRBM Visualization](docs/images/prbm_visualization.png)
+*Example of the visualization showing the hinge linkage with rotational stiffness (PRBM model) alongside the bending beam representation*
+
+## Adding Your Own Images
+
+To add images to this README:
+
+1. Create a folder structure for your images:
+   ```bash
+   mkdir -p docs/images
+   ```
+
+2. Place your images in the `docs/images` folder:
+   - Use descriptive filenames (e.g., `robot_design.png`, `simulation_results.gif`)
+   - Supported formats include PNG, JPG, GIF (for animations)
+   - Keep images reasonably sized (recommend < 1MB each)
+
+3. Reference images in the README using markdown syntax:
+   ```markdown
+   ![Alt Text](docs/images/your_image_name.png)
+   *Optional caption for your image*
+   ```
+
+4. For better organization, you can create subfolders:
+   ```
+   docs/images/design/
+   docs/images/results/
+   docs/images/diagrams/
+   ```
 
 ## Contributing
 
@@ -112,5 +235,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-```
-

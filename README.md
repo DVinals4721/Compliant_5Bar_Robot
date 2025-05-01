@@ -70,7 +70,7 @@ This repository implements a simulation of a compliant 5-bar linkage robot mecha
 
 7. Run specific tests:
    ```bash
-   pytest tests/test_frame_solver.py
+   pytest tests/test_compliant_robot.py
    ```
 
 ## Code Overview and Features
@@ -181,36 +181,6 @@ The visualization includes animation capabilities to:
 - Display real-time information about stress, deformation angles, and forces
 - Show how the compliant links bend in response to different positions
 - Visualize the full motion capabilities of the mechanism
-
-![PRBM Visualization](docs/images/prbm_visualization.png)
-*Example of the visualization showing the hinge linkage with rotational stiffness (PRBM model) alongside the bending beam representation*
-
-## Adding Your Own Images
-
-To add images to this README:
-
-1. Create a folder structure for your images:
-   ```bash
-   mkdir -p docs/images
-   ```
-
-2. Place your images in the `docs/images` folder:
-   - Use descriptive filenames (e.g., `robot_design.png`, `simulation_results.gif`)
-   - Supported formats include PNG, JPG, GIF (for animations)
-   - Keep images reasonably sized (recommend < 1MB each)
-
-3. Reference images in the README using markdown syntax:
-   ```markdown
-   ![Alt Text](docs/images/your_image_name.png)
-   *Optional caption for your image*
-   ```
-
-4. For better organization, you can create subfolders:
-   ```
-   docs/images/design/
-   docs/images/results/
-   docs/images/diagrams/
-   ```
 
 ## Contributing
 
