@@ -1,9 +1,9 @@
 
 # ME_700_Assignment_2: 3D Frame Solver
-![GitHub Actions](https://github.com/DVinals4721/ME_700_Assignment_2/actions/workflows/test.yml/badge.svg)
-[![codecov](https://codecov.io/gh/DVinals4721/ME_700_Assignment_2/branch/main/graph/badge.svg)](https://codecov.io/gh/DVinals4721/ME_700_Assignment_2)
-![GitHub issues](https://img.shields.io/github/issues/DVinals4721/ME_700_Assignment_2)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/DVinals4721/ME_700_Assignment_2)
+![GitHub Actions](https://github.com/DVinals4721/Compliant_5Bar_Robot/actions/workflows/test.yml/badge.svg)
+[![codecov](https://codecov.io/gh/DVinals4721/Compliant_5Bar_Robot/branch/main/graph/badge.svg)](https://codecov.io/gh/DVinals4721/Compliant_5Bar_Robot)
+![GitHub issues](https://img.shields.io/github/issues/DVinals4721/Compliant_5Bar_Robot)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/DVinals4721/Compliant_5Bar_Robot)
 
 This package provides an implementation of a 3D Frame Solver using the Direct Stiffness Method, including:
 
@@ -97,4 +97,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 ```
-
